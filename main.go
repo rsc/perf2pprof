@@ -12,7 +12,7 @@
 // name (including any directory) with .pprof appended.
 // The -o flag instructs perf2pprof to write to outfile instead.
 //
-// Perf is a system-wide profiler: it captures data from every binary
+// Perf is a system-wide profiler for Linux: it captures data from every binary
 // running on the system, along with the operating system kernel.
 // Although in principle it should be possible to express those multiple
 // event sources in a single pprof output file, the current perf2pprof
@@ -20,6 +20,14 @@
 // was running. The -x flag specifies the executable, typically a full path.
 // The -list flag causes perf2pprof to list all the executables with
 // samples in the profile. One of -list or -x must be specified.
+//
+// Go and Perf
+//
+// By default, Go does not maintain x86 frame pointers, which means
+// that perf cannot sample from Go's execution reliably.
+// To build a Go 1.5 or later toolchain that works with perf, use:
+//
+//	GOEXPERIMENT=framepointer ./make.bash
 //
 // Bugs
 //
