@@ -48,7 +48,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/aclements/goperf/perffile"
+	"github.com/aclements/go-perf/perffile"
 	"rsc.io/perf2pprof/pprof"
 )
 
@@ -99,7 +99,7 @@ func main() {
 	}
 
 	printed := make(map[string]bool)
-	rs := perf.Records()
+	rs := perf.Records(perffile.RecordsCausalOrder)
 	for rs.Next() {
 		if numRecords++; numRecords&(numRecords-1) == 0 {
 			fmt.Printf("%d records\n", numRecords)
